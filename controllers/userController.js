@@ -4,7 +4,9 @@ const express = require("express");
 const AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 var bodyParser = require("body-parser");
-const { RDS } = require("aws-sdk");
+
+const userService = require("../services/userService");
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -18,7 +20,10 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-var table = "user";
+var table = "postuser";
+
+
+
 
 exports.addUser = (req, res) => {
   const userName = req.params.userName;
@@ -152,3 +157,19 @@ exports.getAll = (req, res) => {
       }
     });
   };
+
+
+
+exports.register = async(req,res)=>{
+  const response = await userService.register(req.body);
+
+  res.send(response);
+}
+
+exports.login = async(req,res)=>{
+  const response = await userService.login(req.body)
+
+  res.send(response)
+}
+
+

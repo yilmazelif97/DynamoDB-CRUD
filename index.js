@@ -2,9 +2,13 @@ const express = require('express');
 const app = express();
 app.use(express.json())  //bunu kullanmayı unutma yoksa veri alamazsın json formatında
 
-const userrouter = require('./routers/userRouter')
+const userroute = require('./routes/userRoute')
 
-app.use('/user', userrouter);
+const postroute = require('./routes/postRoute')
+
+app.use('/user', userroute);
+
+app.use('/post', postroute)
 
 const port =3000;
 

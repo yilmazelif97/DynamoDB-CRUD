@@ -22,6 +22,10 @@ router.delete('/deleteuser/:id', userContoller.deleteUser)
 
 router.get('/getalluser', userContoller.getAll)
 
+router.get('/login', userContoller.login)  
+
+router.put('/register', userContoller.register)  
+
 
 
 
